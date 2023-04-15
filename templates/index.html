@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summarisar</title>
+    <!-- Mulish font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        ul[class],
+        ol[class] {
+            padding: 0;
+        }
+
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        p,
+        ul[class],
+        ol[class],
+        li,
+        figure,
+        figcaption,
+        blockquote,
+        dl,
+        dd {
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #e50909;
+        }
+
+        body {
+            font-family: "Mulish", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            background-color: #121212;
+            color: #000;
+        }
+
+        .wrapper {
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        ._container {
+        {#height: 100vh;#} display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .ellipse {
+            position: absolute;
+            width: 624px;
+            height: 624px;
+            background-color: #e50909;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 632px) {
+            .ellipse {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        .form {
+            position: relative;
+            max-width: 739px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 10px;
+            z-index: 2;
+        }
+
+        .form__content {
+            padding: 50px 50px;
+        }
+
+        @media (max-width: 632px) {
+            .form__content {
+                padding: 20px 20px;
+            }
+        }
+
+        .form__title {
+            font-size: 22px;
+            font-weight: 600;
+            line-height: calc(26 / 22);
+            margin-bottom: 20px;
+        }
+
+        .form__subtitle {
+            max-width: 557px;
+            font-size: 18px;
+            line-height: calc(24 / 18);
+            margin-bottom: 30px;
+        }
+
+        .form__form-box {
+            display: flex;
+            gap: 18px;
+        }
+
+        @media (max-width: 480px) {
+            .form__form-box {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 632px) {
+            .form {
+                height: 100vh;
+            }
+        }
+
+        .form-rectangle {
+            width: 100%;
+            margin-top: 50px;
+            background-color: #f8f9fd;
+            border-radius: 6px;
+        }
+
+        .form-rectangle__content {
+            padding: 30px 20px;
+        }
+
+        .form-rectangle__title {
+            color: #494949;
+            line-height: calc(16 / 14);
+            margin-bottom: 15px;
+        }
+
+        .form-rectangle__subtitle {
+            color: #494949;
+            line-height: calc(20 / 14);
+        }
+
+        .input-box {
+            width: 100%;
+        }
+
+        .input-box > input {
+            width: 100%;
+            font-size: 16px;
+            line-height: calc(19 / 16);
+            padding: 15px 20px;
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .input-box > input::placeholder {
+            color: #494949;
+        }
+
+        .input-box > input:focus {
+            border: 1px solid #e50909;
+        }
+
+        @media (max-width: 480px) {
+            .btn-box {
+                display: flex;
+            }
+        }
+
+        .btn-box > button {
+            font-size: 18px;
+            line-height: calc(24 / 18);
+            color: #fff;
+            padding: 12px 35px;
+            background-color: #e50909;
+            border-radius: 5px;
+            border: 1px solid #e50909;
+            cursor: pointer;
+        }
+
+        .btn-box > button:hover {
+            background-color: #e50909;
+            border: 1px solid #e50909;
+        }
+
+        @media (max-width: 480px) {
+            .btn-box > button {
+                flex: 1;
+            }
+        }
+    </style>
+    <script>
+
+        function openLoader() {
+            document.getElementById("loadingModal").style.display = "block";
+          }
+        
+        </script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="_container">
+        <div class="ellipse"></div>
+        <div class="form">
+            <div class="form__content form-content">
+                <h3 class="form__title">{% if not summary %}Enter youtube url here{% else %} Summary {% endif %}</h3>
+                <p class="form__subtitle">{{ summary }}</p>
+
+
+                <form   onsubmit="openLoader()" action="" class="form__form-box form-box" method="post">
+                    {% csrf_token %}
+                    <div class="form-box__input-box input-box">
+                        <input name="url" type="text" placeholder="Eg. https://">
+                    </div>
+                    <div class="form-box__btn-box btn-box">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+
+
+                <div id="loadingModal" style="display:none; ">
+                    <button class="btn btn-primary"  style="color:black;" type="button" disabled>
+                      <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                      Wait a moment Summrazing...
+                    </button>
+                </div>
+
+
+                <div class="form__rectangle form-rectangle">
+                    <div class="form-rectangle__content">
+                        <h3 class="form-rectangle__title">About the project</h3>
+                        <p class="form-rectangle__subtitle">Summarises the youtube video script and highlights keypoints
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
