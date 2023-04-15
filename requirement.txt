@@ -1,5 +1,4 @@
-django
-djoser
 Django==4.1.7
 urllib3==1.26.15
 youtube-transcript-api==0.5.0
+django

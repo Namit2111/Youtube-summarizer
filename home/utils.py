@@ -1,8 +1,5 @@
 import urllib.parse
 from youtube_transcript_api import YouTubeTranscriptApi
-# import spacy
-# from spacy.lang.en.stop_words import STOP_WORDS
-# from heapq import nlargest
 import requests
 
 def get_transcript(url):
