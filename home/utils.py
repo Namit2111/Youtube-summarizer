@@ -1,7 +1,7 @@
 import urllib.parse
 from youtube_transcript_api import YouTubeTranscriptApi
 import requests
-
+import time
 def get_transcript(url):
     # Parse the query string parameters of the URL
     query_params = urllib.parse.parse_qs(urllib.parse.urlsplit(url).query)
@@ -75,18 +75,26 @@ def get_transcript(url):
 
 def get_summary(url):
     s = get_transcript(url)
-
-   
-    response = requests.post("https://namit2111-text-summrization.hf.space/run/predict", json={
+    s = s[0]
+    l=len(s)
+ 
+    part1= str(s[:round(l/2)])
+    part2 = str(s[round(l/2):])
+    
+    response1 = requests.post("https://namit2111-text-summrization.hf.space/run/predict", json={
         "data": [
-            str(s),
+            part1,
         ]
     }).json()
-    try:
-        data = response['data']
-        return data[0]
-    except:
-        return "Some error on my side"
+    p1 = response1["data"]
+    time.sleep(1)
+    response2 = requests.post("https://namit2111-text-summrization.hf.space/run/predict", json={
+        "data": [
+            part2,
+        ]
+    }).json()
+    p2 = response2["data"]
+    return "".join(p1+p2)
 
    
 
