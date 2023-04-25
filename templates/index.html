@@ -239,12 +239,12 @@
                 </script> 
                 Summary 
                  {% endif %}</h3>
-                 <iframe  id = "video" width="520" height="315"
-src="https://www.youtube.com/embed/tgbNymZ7vqY"  >
-</iframe>
+                
                 <p class="form__subtitle">{{ summary }}</p>
 
-                
+                {% if summary %} <iframe  id = "video" width="520" height="315"
+                src={{url}}  >
+                </iframe>{% endif %}
                 <form   onsubmit="openLoader()" action="" class="form__form-box form-box" method="post">
                     {% csrf_token %}
                     <div class="form-box__input-box input-box">

@@ -15,4 +15,8 @@ def home(request):
             summary = ''
     except Exception as e:
         summary = 'Please enter a valid YouTube URL'
-    return render(request, 'index.html', {'summary': summary})
+    text = "https://www.youtube.com/embed/"
+    url = url.split("=")[1]
+    url = url.split("&")[0]
+    url = text+url
+    return render(request, 'index.html', {'summary': summary,'url':url})
