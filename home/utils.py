@@ -81,14 +81,14 @@ def get_summary(url):
     part1= str(s[:round(l/2)])
     part2 = str(s[round(l/2):])
     
-    response1 = requests.post("https://namit2111-text-summrization.hf.space/run/predict", json={
+    response1 = requests.post("https://sumit1614-summerization.hf.space/run/predict", json={
         "data": [
             part1,
         ]
     }).json()
     p1 = response1["data"]
     time.sleep(1)
-    response2 = requests.post("https://namit2111-text-summrization.hf.space/run/predict", json={
+    response2 = requests.post("https://sumit1614-summerization.hf.space/run/predict", json={
         "data": [
             part2,
         ]
