@@ -232,9 +232,16 @@
             <div class="form__content form-content">
                 <div class = "lo">
                 <div>
-                <h3 class="form__title">{% if not summary %}Enter nptel video url here{% else %}   <script>
+                <h3 class="form__title">{% if not summary %}Enter nptel video url here{% else %}   
+                    <script>
                     document.getElementById("logo").style.display = "none";
-                </script> Summary  {% endif %}</h3>
+                  
+                </script> 
+                Summary 
+                 {% endif %}</h3>
+                 <iframe  id = "video" width="520" height="315"
+src="https://www.youtube.com/embed/tgbNymZ7vqY"  >
+</iframe>
                 <p class="form__subtitle">{{ summary }}</p>
 
                 
