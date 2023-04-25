@@ -216,6 +216,8 @@
 
         function openLoader() {
             document.getElementById("loadingModal").style.display = "block";
+           
+            
           }
         
         </script>
@@ -230,10 +232,12 @@
             <div class="form__content form-content">
                 <div class = "lo">
                 <div>
-                <h3 class="form__title">{% if not summary %}Enter nptel video url here{% else %} Summary {% endif %}</h3>
+                <h3 class="form__title">{% if not summary %}Enter nptel video url here{% else %}   <script>
+                    document.getElementById("logo").style.display = "none";
+                </script> Summary  {% endif %}</h3>
                 <p class="form__subtitle">{{ summary }}</p>
 
-
+                
                 <form   onsubmit="openLoader()" action="" class="form__form-box form-box" method="post">
                     {% csrf_token %}
                     <div class="form-box__input-box input-box">
